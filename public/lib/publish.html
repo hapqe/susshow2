@@ -1,0 +1,45 @@
+<img hidden src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onload="{
+    const header = document.getElementById('submit-header');
+    const madeDesign = !!window.userData.madeDesign;
+
+    if(madeDesign) {
+        header.innerHTML = 'Willst du dein Design veröffentlichen?';
+    }
+    else {
+        header.innerHTML = 'Wird das dein erstes Kleidungsdesign werden?';
+    }
+}">
+
+<main class="submit-page" style="background-color: rgba(0, 0, 0, 0.495); user-select: none;">
+    <h3 id="submit-header" style="margin-top: 0;">
+        Wird das dein erstes Kleidungsdesign werden?
+    </h3>
+    <div id="main" class="center fill">
+        <img id="show" src="" alt="" style="height: 100%; align-self: center;">
+    </div>
+    <h6 class="low" id="info">
+        <img src="svgs/info.svg" alt="">
+        Wenn du auf “Ja” tippst wird dein Design veröffentlicht. Andere Spieler werden es sehen können.
+    </h6>
+    <div id="accept" class="fill center">
+        <button id="submit-button" onclick="{
+            hideInfoPage();
+            
+            document.getElementById('submit-button').disabled = true;
+            
+            window.parent.postMessage({done: true});
+            window.parent.postMessage({packagingScene: true});
+            post({design: window.design}, '/submitdesign');
+            post({}, '/madedesign');
+        }" style="
+        height: min-content;
+        padding-left: 1em;
+        padding-right: 1em;
+    ">
+            <h3 style="color: black;margin: 0.4em;">
+                <img src="svgs/shirt-black.svg" alt="">
+                Ja!
+            </h3>
+        </button>
+    </div>
+</main>

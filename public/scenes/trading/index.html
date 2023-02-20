@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="./assets/favicon.8d99ceea.ico">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+
+  <title>Made with Needle</title>
+  <meta name="description" content="🌵 Made with Needle Engine">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:title" content="Made with Needle" />
+  <meta property="og:description" content="🌵 Made with Needle Engine" />
+
+  <meta property="twitter:image" content="" />
+  <meta property="og:image" content="" />
+
+  <meta name="robots" content="index,follow">
+  <meta name="url" content="http://needle.tools">
+
+  
+  <script type="module" crossorigin src="./assets/index.0aad9266.js"></script>
+  <link rel="stylesheet" href="./assets/index.ba4d5d10.css">
+</head>
+
+<body>
+  <script>
+    // hack for simple-peer
+    window.global = window;
+    var parcelRequire;
+  </script>
+  
+  
+
+  <div id="joy-wrapper">
+    <img hidden id="joy" src="./assets/joy.887d3452.svg" alt="">
+  </div>
+
+  <div id="trade">
+    <h3>Möchtest du dein Kleidungsstück tauschen?</h3>
+    <div id="design-wrapper">
+      <div id="designs">
+        <img class="design" id="left" src="" alt="">
+        <img class="icn" src="./assets/trade.8f6383eb.svg" alt="">
+        <img class="design" id="right" src="" alt="">
+      </div>
+    </div>
+    <div id="confirm">
+      <div style="width: calc(90% - 7em); margin-right: 1em;"></div>
+      <button onclick="trade()">
+        <img src="./assets/shirt.b98302ee.svg" alt="">
+        <h2>Ja!</h2>
+      </button>
+      <div style="width: 10%; margin-left: 1em;"></div>
+    </div>
+  </div>
+
+  <needle-engine></needle-engine>
+
+  <div class="fullscreen" style="margin: 1em;">
+    <div class="circle">
+      <h3 id="progress">0/6</h3>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('message', async (d) => {
+      if (d.data.savedDesign) {
+        saved = d.data.savedDesign;
+        left.src = saved;
+      }
+      if(d.data.showTrade) {
+        showTrade(d.data.design);
+      }
+      if(d.data.hideTrade) {
+        hideTrade();
+      }
+    });
+
+    let right = document.getElementById("right");
+
+    function showTrade(design) {
+      window.parent?.postMessage({playwoosh: true}, "*");
+      document.getElementById("trade").setAttribute("active", "");
+      right.src = design;
+    }
+
+    function hideTrade() {
+      document.getElementById("trade").removeAttribute("active");
+    }
+
+    function trade() {
+      window.postMessage({
+        trade: true,
+        design: left.src,
+      }, '*');
+      hideTrade();
+    }
+
+    window.addEventListener('message', async (d) => {
+      if (d.data.left) {
+        left.src = d.data.left;
+      }
+    });
+  </script>
+
+  <style>
+    body * {
+      user-select: none;
+    }
+    
+    #design-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    .circle {
+      border-radius: 50%;
+      width: 3rem;
+      height: 3rem;
+      background-color: rgba(255, 255, 255, 0.211);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 1em;
+    }
+
+    .fullscreen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .icn {
+      height: 2.5em;
+      width: 2.5em;
+    }
+
+    .design {
+      height: 8em;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #joy-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 200;
+
+      pointer-events: none;
+      overscroll-behavior: none;
+    }
+
+    #joy-wrapper img {
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      /* not draggable */
+      -moz-user-drag: none;
+      -webkit-user-drag: none;
+      user-drag: none;
+
+      position: absolute;
+    }
+
+    #trade {
+      z-index: 10;
+      position: absolute;
+      height: fit-content;
+      width: 100%;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.74) 43.23%, rgba(0, 0, 0, 0) 100%);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    #designs {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    button {
+      all: unset;
+      width: 5rem;
+      height: 2.5rem;
+      background: white;
+      border-radius: .5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button * {
+      user-select: none;
+    }
+
+    #confirm {
+      transform: translateY(1.25em);
+      display: flex;
+      justify-content: end;
+      align-items: center;
+    }
+
+    #confirm>div {
+      height: 1px;
+      background-color: white;
+    }
+
+    button img {
+      height: 60%;
+    }
+
+    button h2 {
+      font-size: 1.5rem;
+      margin: 0;
+      margin-left: .2em;
+      color: #000;
+    }
+
+    #trade>h3 {
+      width: 100%;
+      padding-left: 2em;
+      width: calc(100% - 4em);
+      margin-top: 2em;
+      text-align: center;
+    }
+
+    @font-face {
+      font-family: Gerstner Programm;
+      src: url(https://www.mak.at/jart/prj3/mak-resp/resources/fonts/mak/GerstnerProgrammMAKWeb-Medium.woff2);
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: Gerstner Programm;
+      color: white;
+    }
+
+    .mak-font {
+      font-family: Gerstner Programm;
+      color: white;
+    }
+
+    #trade {
+      transform: translateY(-110%);
+      transition: .2s ease-in-out;
+      opacity: 0;
+    }
+    
+    /* left to left */
+    #trade #left {
+      transform: translateX(-100%);
+      transition: .2s ease-in-out;
+    }
+    
+    /* right to right */
+    #trade #right {
+      transform: translateX(100%);
+      transition: .2s ease-in-out;
+    }
+
+    /* trade if 'active' attribute is set */
+    #trade[active] {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    #trade[active] #left {
+      transform: translateX(0);
+    }
+
+    #trade[active] #right {
+      transform: translateX(0);
+    }
+  </style>
+</body>
+
+</html>

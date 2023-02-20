@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="./assets/favicon.8d99ceea.ico">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+
+  <title>Sustained Fashion</title>
+  <meta name="description" content="A Game About Sustained Fashion">
+
+  <meta property="twitter:image" content="" />
+  <meta property="og:image" content="" />
+
+  <meta name="robots" content="index,follow">
+  <meta name="url" content="http://needle.tools">
+
+  
+  <script type="module" crossorigin src="./assets/index.56e8a71f.js"></script>
+  <link rel="stylesheet" href="./assets/index.b8cb86a4.css">
+</head>
+
+<body>
+  <script>
+    // hack for simple-peer
+    window.global = window;
+    var parcelRequire;
+  </script>
+  
+  
+  <script>
+    function setTool(e) {
+      e.preventDefault();
+      window.dispatchEvent(new CustomEvent('setTool', { detail: e }));
+    }
+    function resetCloth(e) {
+      e.preventDefault();
+      window.dispatchEvent(new CustomEvent('resetCloth', { detail: e }));
+    }
+    function submitCloth(e) {
+      e.preventDefault();
+      window.dispatchEvent(new CustomEvent('submitCloth', { detail: e }));
+      window.parent?.postMessage({playscore: true}, "*");
+    }
+  </script>
+
+  <needle-engine></needle-engine>
+
+  <div class="abs">
+    <div class="circle" onpointerdown="setTool(event)">
+      <img id="tool" src="./assets/Camera.5b1aab87.svg" alt="">
+    </div>
+    <div style="margin-left: 1rem" class="circle" onpointerdown="resetCloth(event)">
+      <img src="./assets/Reset.44177f78.svg" alt="">
+    </div>
+  </div>
+  <div class="abs" style="right: 0; left: unset;">
+    <div class="circle" onpointerdown="submitCloth(event)">
+      <img src="./assets/Done.9943eb9e.svg" alt="">
+    </div>
+    <canvas id="clothColor" hidden color="white" width="200" height="200"></canvas>
+    <canvas id="submitCanvas" hidden color="white" width="200" height="200"></canvas>
+  </div>
+</body>
+</html>

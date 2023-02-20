@@ -1,0 +1,50 @@
+<div id="replay-wrapper">
+    <h3>Wie willst du das Spiel nocheinmal erleben?</h3>
+    <button onclick="setScene('scenes/earth'); hideInfoPage()">
+        <img style="margin-left: .5em" src="svgs/shirt-black.svg" alt="">
+        <h3 style="margin: .5em; color: black;">Klassisch</h3>
+    </button>
+    <div class="replay-info">
+        <img src="svgs/info.svg" alt="">
+        <h6>Lasse dir so viel Zeit du willst. In jedem Level gibt es ein verstecktes Geheimniss. Wirst du alle finden?</h6>
+    </div>
+    <button onclick="{
+        setScene('scenes/earth');
+        playerRunning = true;
+        run();
+        hideInfoPage();
+    }">
+        <img style="margin-left: .5em" src="svgs/stopwatch-black.svg" alt="">
+        <h3 style="margin: .5em; color: black;">Im Speedrun-Mode</h3>
+    </button>
+    <div class="replay-info">
+        <img src="svgs/info.svg" alt="">
+        <h6>Spiele ohne Ablenkungen und Zwischensequenzen auf Zeit.</h6>
+    </div>
+</div>
+
+<style>
+    #replay-wrapper {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+    }
+    #replay-wrapper h3 {
+        color: rgba(255, 255, 255, 0.844);
+        text-align: center;
+    }
+    .replay-info {
+        display: flex;
+        align-items: start;
+        opacity: .6;
+    }
+    .replay-info img {
+        margin-right: .5em;
+    }
+    .replay-info h6 {
+        margin: 0;
+    }
+</style>

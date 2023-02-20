@@ -1,0 +1,66 @@
+<img hidden src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onload="{
+    (async () => {
+        const data = window.userData;
+        const wrapper = document.getElementById('wrapper');
+        const html = await (await fetch('lib/design.html')).text();
+        const element = document.createElement('div');
+        element.innerHTML = html;
+        
+        if(data.designs)
+        Object.entries(data.designs).forEach(async entry => {
+            const [key, props] = entry;
+            const res = await post({designName: key}, '/getdesign');
+            const data = await res.json();
+
+            const e = element.cloneNode(true);
+            e.querySelector('img').src = data.design;
+            e.querySelector('#sells').innerText = props.buyCount ?? 0;
+            e.querySelector('#trades').innerText = props.tradeCount ?? 0;
+            e.querySelector('#delete').onclick = () => {
+                if (confirm('Bist du dir sicher, dass du dieses Design löschen willst?')) {
+                    post({designName: key}, '/deletedesign');
+                    e.remove();
+                    delete window.userData.designs[key];
+                }
+            };
+            wrapper.prepend(e);
+        });
+    })();
+}">
+
+<div id="wrapper" class="designs-wrapper">
+    <div id="button-wrapper">
+        <button onclick="{
+            window.parent.postMessage({
+                makeDesign: true
+            }, '*');
+        }">
+            <img style="margin-left: .5em" src="svgs/plus.svg" alt="">
+            <h3 style="margin: .5em; color: black;">Neues Design</h3>
+        </button>
+    </div>
+</div>
+
+<style>
+    .designs-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .designs-wrapper {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+    #button-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+</style>

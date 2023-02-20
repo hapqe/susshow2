@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <title>Sustained Fashion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="font.css">
+</head>
+
+<body>
+    <iframe id="frame" src="" frameborder="0" style="height: calc(var(--screen-height) - 3px);"></iframe>
+    
+    <div class="fullscreen center-x">
+        <span id="info" class="h-fit up t-md" style="z-index: 100;">
+            <h5 class="center"><t class="ml-1 rainbow-text">Viel Spaß beim Spielen!</t> 
+                <img onclick="hideInfo()" class="h-md" src="./svgs/x.svg" alt="">
+            </h5>
+        </span>
+    </div>
+    
+    <div id="woosh" class="fullscreen t-md" style="background-color: black; transform: translateX(-100%)">
+        
+    </div>
+    
+    <div id="blink" class="fullscreen"></div>
+
+    <div class="fullscreen" id="info-page" style="display: none; opacity: 0;">
+        <span id="info-page-title" style="position: fixed; top: 0; width: 100%;">
+            <h2 style="width: 100%;">
+                <img id="info-page-icon-left" src="" style="transform: rotate(-20deg);" alt="">
+                <t id="info-page-title-text">
+                    Replay
+                </t>
+                <img id="info-page-icon-right" src="" style="transform: rotate(20deg);" alt="">
+            </h2>
+        </span>
+        <span id="info-page-close" style="position: fixed; top: 0; left: 0">
+            <img id="close" src="svgs/x.svg" alt="" onclick="hideInfoPage()">
+        </span>
+        <div id="info-page-content">
+    
+        </div>
+    </div>
+
+    <div id="star-wrapper" class="fullscreen center no-interactions">
+        <img id="star" src="svgs/star.svg" alt="">
+    </div>
+    
+    <div id="title" class="fullscreen bg-white center no-interactions" style="visibility: hidden;">
+        <h1 class="no-interactions">Sustained Fashion</h1>
+    </div>
+
+    
+
+    <div class="fullscreen" id="clouds">
+        <img class="fill" src="cloud.png" alt="">
+        <img class="fill" src="cloud.png" alt="">
+    </div>
+
+    <div class="fullscreen indent center no-interactions">
+        <h3 style="pointer-events: none;" id="text"></h3>
+    </div>
+    
+    <div style="display: none;" class="fullscreen info-wrapper">
+        <div onclick="cycleInfo()" class="info-button">
+            <img src="svgs/info-button.svg" alt="">
+        </div>
+    </div>
+
+    <div id="time-wrapper" class="fullscreen no-interactions" style="justify-content: start; align-items: end; display: none;">
+        <div class="round" style="min-width: 7em; display: flex; background-color: rgba(255, 255, 255, 0.177); padding: .3em; padding-left: .5em; padding-right: .5em; margin: 1em;">
+            <img src="svgs/stopwatch.svg" style="margin-right: .3em;" alt="">
+            <h3 id="time" class="m-0">2:22:320</h3>
+        </div>
+    </div>
+</body>
+
+<script src="./info.js"></script>
+<script src="./logic.js"></script>
+<script src="./text.js"></script>
+<script src="./effects.js"></script>
+<script src="./time.js"></script>
+<script src="./loader.js"></script>
+<script src="./info-button.js"></script>
+
+</html>

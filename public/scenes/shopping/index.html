@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="./assets/favicon.8d99ceea.ico">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+
+  <title>Made with Needle</title>
+  <meta name="description" content="🌵 Made with Needle Engine">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:title" content="Made with Needle" />
+  <meta property="og:description" content="🌵 Made with Needle Engine" />
+
+  <meta property="twitter:image" content="" />
+  <meta property="og:image" content="" />
+
+  <meta name="robots" content="index,follow">
+  <meta name="url" content="http://needle.tools">
+
+  
+  <script type="module" crossorigin src="./assets/index.a9d3b555.js"></script>
+  <link rel="stylesheet" href="./assets/index.ba4d5d10.css">
+</head>
+
+<body>
+  <script>
+    // hack for simple-peer
+    window.global = window;
+    var parcelRequire;
+  </script>
+  
+  
+
+  <div id="joy-wrapper">
+    <img hidden id="joy" src="./assets/joy.887d3452.svg"  alt="">
+  </div>
+
+  <div id="darkening-wrapper">
+    <div id="darkening">
+  
+    </div>
+  </div>
+  
+  <div id="c-wrapper">
+    <div class="circle">
+      <svg width="33" height="13" viewBox="0 0 33 13" fill="red" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.41284 0.00592662C6.90082 0.0390424 6.47286 0.0772529 6.24105 0.107821C3.95351 0.421148 2.33848 1.26687 1.50804 2.5915C1.26095 2.9838 1.03423 3.55186 0.894126 4.13011L0.825347 4.41033L0.47381 4.42306C0.127368 4.4358 0.122274 4.4358 0.0611368 4.50713C0.00254737 4.5759 0 4.58864 0 5.03443V5.49296L0.0738737 5.57447C0.147747 5.65599 0.152842 5.65854 0.402484 5.66618L0.654673 5.67637L0.672505 6.11197C0.728547 7.59708 1.17434 8.85039 2.00223 9.84896C2.23659 10.1317 2.78173 10.6539 3.05684 10.8603C3.65802 11.3111 4.21844 11.5964 4.87821 11.7875C7.48417 12.5466 10.1971 11.3264 12.7878 8.23138C14.4105 6.29283 15.1237 4.48675 14.8333 3.04239C14.8206 2.97616 14.8282 2.96597 14.9556 2.90993C15.2689 2.77237 15.6256 2.70868 16.0739 2.70868C16.5757 2.71123 17.075 2.83096 17.373 3.02201C17.559 3.14174 17.5539 3.13155 17.5233 3.44233C17.4495 4.16833 17.6736 5.10321 18.1424 6.04064C18.9397 7.62765 20.6464 9.57893 22.213 10.6896C23.7058 11.7467 25.2801 12.1798 26.7983 11.9505C28.0083 11.7697 29.068 11.2194 29.9953 10.2947C30.492 9.80056 30.8155 9.35222 31.1034 8.76632C31.5007 7.95371 31.6994 7.13346 31.7326 6.15018L31.7478 5.67382L32.1019 5.66618L32.4586 5.65854L32.5324 5.57447L32.6063 5.49296V5.03188V4.57081L32.5324 4.49694L32.4586 4.42306H32.023H31.5899L31.5644 4.32626C31.5517 4.27531 31.5211 4.15814 31.5007 4.06643C31.4371 3.77858 31.2613 3.27675 31.1288 3.00418C30.599 1.89098 29.687 1.12167 28.2732 0.594369C27.5472 0.3218 26.7091 0.151127 25.5374 0.0390424C25.1043 -0.00426285 23.553 -0.00426285 23.1174 0.036495C22.2844 0.118011 21.6883 0.202074 21.1763 0.311611L20.8884 0.372748H16.2064C11.6058 0.372748 11.5192 0.372748 11.2823 0.3218C10.7499 0.207169 10.0315 0.105274 9.32336 0.0415898C9.02278 0.0135687 7.66503 -0.011905 7.41284 0.00592662ZM19.0543 1.02997C18.4378 1.45283 18.0252 1.90626 17.7934 2.41064C17.7526 2.50235 17.7169 2.58132 17.7118 2.58641C17.7093 2.5915 17.6176 2.55075 17.5081 2.4947C17.1514 2.31129 16.8152 2.22214 16.3414 2.18393C15.7911 2.14062 15.1747 2.23233 14.7442 2.42083L14.6525 2.46159L14.548 2.27308C14.3162 1.85022 13.9316 1.42991 13.5291 1.15988C13.417 1.08346 13.3253 1.01468 13.3227 1.00195C13.3227 0.991758 14.627 0.984116 16.2216 0.986663C18.955 0.986663 19.1154 0.989211 19.0543 1.02997Z" fill="white"/>
+      </svg>
+    </div>
+    <div id="cool">
+      <div id="meter" style="background-color: white;"></div>
+    </div>
+  </div>
+
+  <needle-engine></needle-engine>
+  <style>
+    body {
+      height: 100vh;
+      overflow: hidden;
+    }
+    #joy-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 200;
+
+      pointer-events: none;
+      overscroll-behavior: none;
+    }
+    #joy-wrapper img {
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      /* not draggable */
+      -moz-user-drag: none;
+      -webkit-user-drag: none;
+      user-drag: none;
+
+      position: absolute;
+    }
+    #darkening {
+      width: 1700px;
+      height: 100%;
+      background: linear-gradient(89.97deg, #000000 33.72%, rgba(0, 0, 0, 0) 43.73%, rgba(0, 0, 0, 0) 56.2%, #000000 66.28%);
+      pointer-events: none;
+      z-index: 100;
+      position: absolute;
+      top: 0;
+    }
+    #darkening-wrapper {
+      overscroll-behavior: none;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #c-wrapper{
+      z-index: 150;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding: 1em;
+      display: flex;
+    }
+    #cool {
+      width: 100%;
+      height: 1em;
+      border-radius: 0.5em;
+      background-color: rgba(255, 255, 255, 0.22);
+      width: calc(100% - 6em);
+      margin-top: 1em;
+      padding-left: .25em;
+    }
+    .circle {
+      border-radius: 50%;
+      width: 3rem;
+      height: 3rem;
+      background-color: rgba(255, 255, 255, 0.211);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 1em;
+    }
+    #meter {
+      border-radius: 0.5em;
+      height: 50%;
+      transform: translateY(50%);
+    }
+
+    .rainbow {
+      background: linear-gradient(90deg, #ff4646, #ffa64c, #ffff60, #57ff57, #6e6eff, #c069ff, #d77aff) !important;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbow 1000s linear infinite;
+    }
+
+    @keyframes rainbow {
+      0% {
+          background-position-x: 0px;
+      }
+
+      100% {
+          background-position-x: 40000px;
+      }
+  }
+  </style>
+</body>
+</html>

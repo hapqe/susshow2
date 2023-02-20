@@ -1,0 +1,149 @@
+<img hidden src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onload="{
+    async function appendElements(type) {
+        const res = await post({}, type);
+        const rankings = await res.json();
+        const wrapper = document.getElementById(type);
+        Object.values(rankings).forEach((entry, i) => {
+            const time = entry.time;
+            
+            const zeroPad = (num, places) => String(num).padStart(places, '0')
+        
+            const seconds = Math.floor(time / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const millis = time % 1000;
+        
+            const s = zeroPad(seconds, 2);
+            const m = zeroPad(minutes, 2);
+            const ms = zeroPad(millis, 3);
+            
+            const timeString = `${m}:${s%60}:${ms}`;
+
+            const rank = entry.rank ?? i + 1;
+
+            const e = document.createElement('entry');
+            e.setAttribute('you', entry.you ? 'true' : 'false')
+            const html = `
+                <h3>${rank}.&nbsp${entry.name}${entry.you ? '&nbsp(Du)' : ''}</h3>
+                <h3>${timeString}</h3>
+            `;
+
+            e.innerHTML = html;
+
+            wrapper.append(e);
+        });
+    }
+
+    Promise.all([
+        appendElements('total'),
+        appendElements('weekly')
+    ]);
+
+    const wrapper = document.getElementById('ranking-wrapper');
+    const wrapperTop = wrapper.getBoundingClientRect().top;
+    wrapper.addEventListener('scroll', () => {
+        gradients();
+    });
+    gradients();
+
+    function gradients(params) {
+        const headers = wrapper.querySelectorAll('header');
+        headers.forEach(header => {
+            const top = header.getBoundingClientRect().top;
+            if(top <= wrapperTop) {
+                header.classList.add('gradient');
+            }
+            else {
+                header.classList.remove('gradient');
+            }
+        })   
+    }
+}">
+
+
+<div id="ranking-wrapper">
+    <div>
+        <header>
+            <div class="bar" style="margin-right: 1em;"></div>
+            <h3>Diese Woche</h3>
+            <div class="bar" style="margin-left: 1em; width: 100%;"></div>
+        </header>
+        <div id="weekly">
+
+        </div>
+    </div>
+    <div>
+        <header>
+            <div class="bar" style="margin-right: 1em;"></div>
+            <h3>Total</h3>
+            <div class="bar" style="margin-left: 1em; width: 100%;"></div>
+        </header>
+        <div id="total">
+        </div>
+    </div>
+</div>
+
+<style>
+    #ranking-wrapper {
+        height: 100%;
+        overflow-y: scroll;
+
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    #ranking-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+    
+    header {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .gradient {
+        background: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
+    }
+
+    header * {
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    .bar {
+        height: 2px;
+        width: 3em;
+        background-color: white;
+    }
+
+    entry {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    entry * {
+        margin: 0;
+    }
+
+    entry * {
+        color: #c0c0c0;
+    }
+
+    entry[you="true"] * {
+        color: #ffffff;
+    }
+    
+    entry:nth-child(1) * {
+        color: #ffdf27;
+    }
+    entry:nth-child(2) * {
+        color: #ffffff;
+    }
+    entry:nth-child(3) * {
+        color: #cd7f32;
+    }
+</style>

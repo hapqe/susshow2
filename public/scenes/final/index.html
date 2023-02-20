@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ending</title>
+</head>
+<body>
+    <div class="fill">
+        <h1 id="congrats">Danke fürs Spielen!</h1>
+        <button id="back-to-hub" onclick="{
+            window.parent.postMessage({toHub: true}, '*');
+        }">
+            <img src="house.svg" alt="">
+            <h2 style="color: black">Zum Hub</h2>
+        </button>
+    </div>
+    <div class="top">
+        <div id="new-record" style="display: none;">
+            <img src="trophy.svg" alt="">
+            <h4>Neuer Rekord!</h4>
+        </div>
+    </div>
+    <span>
+        <img src="info.svg" alt="" style="margin-left: 2em; margin-right: 0em;">
+        <h5 style="color: #bbb0ab; margin-right: 2em;">
+            Dein Fortschritt und deine Designs bleiben gespeichert. Im Hub hast du die Mögichkeit, gegen andere Spieler anzutreten, neue Designs zu entwerfen, und das Spiel nocheinmal durchzuspielen.
+        </h5>
+    </span>
+</body>
+<script>
+    window.addEventListener('message', (event) => {
+        if (event.data.stopTimer) {
+            const time = event.data.time;
+            const timeString = event.data.timeString;
+            document.getElementById("congrats").innerHTML = `Du hast das Spiel in <b>${timeString}</b> Minuten beendet!`;
+            var hub = document.getElementById("back-to-hub");
+            hub.querySelector("h2").innerHTML = "Zeit veröffentlichen";
+            hub.onclick = () => {
+                const name = prompt("Gebe einen Namen ein, unter dem dich andere Spieler sehen werden.");
+                if (name) {
+                    window.parent?.postMessage({publishTime: true, name, time}, "*");
+                }
+                else {
+                    window.parent?.postMessage({tip: "Name ungültig!"}, "*");
+                }
+            }
+            hub.querySelector("img").src = "stopwatch.svg";
+        }
+        if (event.data.newRecord) {
+            document.getElementById("new-record").style.display = "flex";
+        }
+    });
+
+    window.parent?.postMessage({stopTimer: true}, "*");
+    window.parent?.postMessage({sceneLoaded: true}, "*");
+</script>
+<style>
+    body {  
+        background-color: black;
+    }
+    
+    span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+        bottom: 0;
+        width: 100vw;
+        background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
+    }
+
+    span * {
+        margin: 1em;
+    }
+
+    .top {
+        top: 0;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .fill {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    button {
+      all: unset;
+      height: 2.5rem;
+      background: white;
+      border-radius: .5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      transform: translateY(10px);
+    opacity: 0;
+    }
+
+    img {
+        height: 1.5em;
+        margin-left: .5em;
+        margin-right: .5em;
+    }
+
+    h2{
+        margin-right: .5em;
+    }
+    
+    .fill {
+        width: 100vw;
+        height: 100vh;
+        background: url(ending.jpg);
+        background-size: cover;
+        background-position: center;
+
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    @font-face {
+    font-family: Gerstner Programm;
+    src: url(https://www.mak.at/jart/prj3/mak-resp/resources/fonts/mak/GerstnerProgrammMAKWeb-Medium.woff2);
+}
+
+    p, h1, h2, h3, h4, h5, h6 {
+        font-family: Gerstner Programm;
+        color: white;
+    }
+
+    .mak-font {
+        font-family: Gerstner Programm;
+        color: white;
+    }
+
+    @keyframes title {
+        0% {
+            filter: blur(10px);
+            transform: scale(1.5);
+        }
+        100% {
+            filter: blur(0px);
+            transform: scale(1);
+        }
+    }
+
+    h1 {
+        animation: title 5s ease-out;
+        text-align: center;
+    }
+
+    h1 b {
+        /* add glow */
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff0, 0 0 70px #ff0, 0 0 80px #ff0, 0 0 100px #ff0, 0 0 150px #ff0;
+    }
+
+    @keyframes button {
+        100% {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    }
+
+    button {
+        animation: button .3s ease-out forwards;
+        animation-delay: 5s;
+    }
+
+    #new-record {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10em;
+        background-color: #fbfbfb47;
+    }
+
+    #new-record h4 {
+        margin: .4em;
+        margin-left: 0;
+    }
+</style>
+</html>
